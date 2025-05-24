@@ -13,7 +13,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { toast } from "react-toastify";
-import { z } from "node_modules/zod/lib";
+import { z } from "zod"; // ✅ Đúng chuẩn
+
 
 const AccountListTable = () => {
   const { data, isPending } = useGetAllAccounts();
