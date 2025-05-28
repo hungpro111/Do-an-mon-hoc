@@ -1,4 +1,0 @@
-# DO NOT include these lines:
-yarn.lock
-package-lock.json
-pnpm-lock.yaml
