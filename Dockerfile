@@ -9,7 +9,11 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .npmrc* ./
+# Sao chép lockfile và package.json vào container
+COPY package.json ./
+COPY package-lock.json ./
+# Hoặc nếu dùng pnpm:
+# COPY pnpm-lock.yaml ./
 RUN if [ -f yarn.lock ]; then yarn; \
   elif [ -f package-lock.json ]; then npm install; \
   elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm install; \
