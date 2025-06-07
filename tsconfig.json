@@ -24,6 +24,6 @@
     },
      "baseUrl": "."
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "__test__/Login.test.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "__test__/Login.test.js", "__test__/CreateAppointmentModal.test.js"],
   "exclude": ["node_modules"]
 }
