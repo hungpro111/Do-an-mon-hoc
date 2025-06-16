@@ -24,9 +24,6 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Export static files (optional, for static deployment)
-        run: npm run export
-
       # Optional: deploy step if you're using Docker or another platform
       # - name: Deploy to Vercel / Render / custom server
       #   run: echo "Deploy script here"
