@@ -1,0 +1,32 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+
+      - name: Build Docker image (local test)
+        run: docker build -t do-an-app .
+
+      - name: Deploy to server via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            docker stop do-an-container || true
+            docker rm do-an-container || true
+            docker rmi do-an-app || true
+            cd /home/${{ secrets.SSH_USER }}/Do-an-mon-hoc
+            git pull
+            docker build -t do-an-app .
+            docker run -d -p 3000:3000 --name do-an-container do-an-app

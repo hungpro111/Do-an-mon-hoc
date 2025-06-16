@@ -1,19 +1,32 @@
+export const runtime = "nodejs";
+
 import { NextResponse } from "next/server";
-import { otpStore } from "../send-otp/route";
+import prisma from "@/lib/prisma";
 
 export async function POST(req: Request) {
   const { email, otp } = await req.json();
 
-  const record = otpStore.get(email);
+  if (!email || !otp) {
+    return NextResponse.json(
+      { valid: false, error: "Thiếu email hoặc mã OTP" },
+      { status: 400 }
+    );
+  }
+
+  const record = await prisma.otp.findFirst({
+    where: { email },
+    orderBy: { createdAt: "desc" },
+  });
+
   if (!record) {
     return NextResponse.json({ valid: false, error: "Không tìm thấy mã OTP" });
   }
 
-  const isExpired = Date.now() > record.expires;
+  const isExpired = new Date() > record.expiresAt;
   const isMatch = otp === record.otp;
 
   if (isExpired) {
-    otpStore.delete(email);
+    await prisma.otp.deleteMany({ where: { email } });
     return NextResponse.json({ valid: false, error: "Mã OTP đã hết hạn" });
   }
 
@@ -21,7 +34,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ valid: false, error: "Mã OTP không đúng" });
   }
 
-  // Xác minh thành công
-  otpStore.delete(email);
+  await prisma.otp.deleteMany({ where: { email } }); // Xoá sau khi xác thực
   return NextResponse.json({ valid: true });
 }
