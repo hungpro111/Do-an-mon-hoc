@@ -28,4 +28,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: ngochungdangcap/my-app:latest
+        tags: trung427/my-app:latest
