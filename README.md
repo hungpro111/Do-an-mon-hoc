@@ -17,3 +17,10 @@
  2. Nhân viên xác nhận lịch khám
 - Bác sĩ: 
 1. Hiện danh sách lịch khám được chỉ định đã dc nhân viên xác nhận
+
+
+git add . 
+<!-- thêm code toàn bộ -->
+git commit -m "Ver1" 
+<!-- commit + comment -->
+git push origin main
