@@ -35,4 +35,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: hungpro111/nextjs-app:latest
+          tags: ngochungdangcap/do-an-mon-hoc:latest
