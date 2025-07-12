@@ -16,7 +16,7 @@ const Slider = () => {
               <div className="col-lg-7">
                 <div className="text">
                   <h1>
-                   Chào mùng bạn đến với CMC Hospital11211 <span>Dịch vụ</span> Y tế mà bạn có thể{" "}
+                   Chào mùng bạn đến với CMC Hospital11 <span>Dịch vụ</span> Y tế mà bạn có thể{" "}
                     <span>tin tưởng!</span>
                   </h1>
                   <p>
